@@ -1,4 +1,6 @@
 import React from 'react';
+import Card from "./lib/Card";
+import CardDeck from "./lib/CardDeck";
 
 interface cardClassType {
   rank: string,
@@ -9,6 +11,9 @@ function App() {
   const ClassCard: React.FC<cardClassType> = props => {
     const cardClass = 'card rank-' + props.rank + ' ' + props.suit;
     let suit = '';
+
+    const card = new Card('clubs', 'K');
+    const cardDeck = new CardDeck();
 
     if (props.suit === 'diams') {
       suit = '♦';
@@ -34,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <ClassCard rank='k' suit='hearts'/>
+      <ClassCard rank='a' suit='hearts'/>
     </div>
   )
 }
