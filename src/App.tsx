@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Card from "./lib/Card";
 import CardDeck from "./lib/CardDeck";
+import PokerHand from "./lib/PokerHand";
 
 interface cardClassType {
   rank: string,
@@ -45,13 +46,17 @@ function App() {
       {suit: newCardArr[3].suit, rank: newCardArr[3].rank},
       {suit: newCardArr[4].suit, rank: newCardArr[4].rank},
     ]);
+
+    const newHand = new PokerHand();
+    newHand.arr.push(newCardArr[0], newCardArr[1], newCardArr[2], newCardArr[3], newCardArr[4]);
+    newHand.getOutcome();
   };
 
-  const btn = <button onClick={getCardsDeck}>Click</button>;
+  const btn = <button className="custom-btn btn" onClick={getCardsDeck}><span>Click</span></button>;
 
   if (cards.length === 0) {
     return (
-      <div>
+      <div className="App">
         {btn}
       </div>
     );
@@ -60,11 +65,13 @@ function App() {
   return (
     <div className="App">
       {btn}
-      <ClassCard rank={cards[0].rank} suit={cards[0].suit}/>
-      <ClassCard rank={cards[1].rank} suit={cards[1].suit}/>
-      <ClassCard rank={cards[2].rank} suit={cards[2].suit}/>
-      <ClassCard rank={cards[3].rank} suit={cards[3].suit}/>
-      <ClassCard rank={cards[4].rank} suit={cards[4].suit}/>
+      <div className="block-cards">
+        <ClassCard rank={cards[0].rank} suit={cards[0].suit}/>
+        <ClassCard rank={cards[1].rank} suit={cards[1].suit}/>
+        <ClassCard rank={cards[2].rank} suit={cards[2].suit}/>
+        <ClassCard rank={cards[3].rank} suit={cards[3].suit}/>
+        <ClassCard rank={cards[4].rank} suit={cards[4].suit}/>
+      </div>
     </div>
   );
 }
